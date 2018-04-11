@@ -111,6 +111,7 @@ var initMap = () => {
       map: map,
       position: position,
       title: title,
+			// TODO need to add track to the data
 			icon: buildIcon("insertTrack"),
       id: i
     });
@@ -134,13 +135,29 @@ const populateInfoWindow = (map, marker, infoWindow) => {
 const buildIcon = (track) => {
 	return {
 		path: google.maps.SymbolPath.CIRCLE,
-		/*
-			TODO for now all the icons are yellow circles.
-			Need to change the color based on track.
-		*/
-		fillColor: '#FF0',
+		fillColor: getColor(track),
 		fillOpacity: 1,
 		strokeWeight: 0.5,
 		scale: 4
 	};
+}
+
+const getColor = (track) => {
+	const yellow = '#FF0';
+	const green = '#0F0';
+	const blue = '#5f89ce';
+	const red = '#F00';
+	let color = "";
+	switch (track) {
+		case 'Android Basics':
+			return green;
+		case 'Android Dev':
+			return red;
+		case 'Front End':
+			return yellow;
+		case 'Mobile Web':
+			return blue;
+		default:
+			return yellow;
+	}
 }
