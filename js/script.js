@@ -111,17 +111,7 @@ var initMap = () => {
       map: map,
       position: position,
       title: title,
-			icon: {
-      	path: google.maps.SymbolPath.CIRCLE,
-				/*
-					TODO for now all the icons are yellow circles.
-					Need to change the color based on track.
-				*/
-				fillColor: '#FF0',
-				fillOpacity: 1,
-				strokeWeight: 0.5,
-      	scale: 4
-    	},
+			icon: buildIcon("insertTrack"),
       id: i
     });
 
@@ -139,4 +129,18 @@ const populateInfoWindow = (map, marker, infoWindow) => {
   infoWindow.addListener('closeclick', function() {
     infoWindow.marker = null;
   });
+}
+
+const buildIcon = (track) => {
+	return {
+		path: google.maps.SymbolPath.CIRCLE,
+		/*
+			TODO for now all the icons are yellow circles.
+			Need to change the color based on track.
+		*/
+		fillColor: '#FF0',
+		fillOpacity: 1,
+		strokeWeight: 0.5,
+		scale: 4
+	};
 }
